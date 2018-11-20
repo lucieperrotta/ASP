@@ -15,6 +15,17 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
     y = sgn.lfilter(b, a, data)
     return y
 
+# Do not use!!!
+def iir_butter(lowcut, highcut, order=5):
+    return sgn.iirfilter(N=order, Wn=[lowcut, highcut],  btype='band', ftype='butter', analog = False, output='ba')
+
+
+# IIR Bandpass filter applied on array "data" between 0 and 1
+def iir_butter_filter(data, lowcut, highcut, order=5):
+    b, a = iir_butter(lowcut, highcut, order=order)
+    y = sgn.lfilter(b, a, data)
+    return y
+
 # Moving average to scmooth signal
 def smooth(x, window_len=11, window='hanning'):
 	if window_len<3:

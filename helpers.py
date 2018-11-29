@@ -37,3 +37,8 @@ def smooth(x, window_len=11, window='hanning'):
 	    w=eval('np.'+window+'(window_len)')
 	y=np.convolve(w/w.sum(), s, mode='valid')
 	return y
+
+def moving_average(a, n) :
+    ret = np.cumsum(a, dtype=float)
+    ret[n:] = ret[n:] - ret[:-n]
+    return ret[n - 1:] / n

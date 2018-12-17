@@ -152,7 +152,8 @@ def renderAutowah (file, maximum = 3000, minimum = 500, peak = True, p = 1, writ
         yl = autowah(datal, maximum, minimum, peak = peak, Q = 0.8, p = p, delay = 0)
         yr = autowah(datar, maximum, minimum, peak = peak, Q = 0.8, p = p, delay = 0)
         y = np.asarray([yl, yr], dtype=np.float32)
-        
+        if write :
+            wavfile.write(output, fs, np.swapaxes(y,0,1))
 
     else :
         MAX_VAL = abs(np.iinfo(data.dtype).min) # get max integer
@@ -160,6 +161,6 @@ def renderAutowah (file, maximum = 3000, minimum = 500, peak = True, p = 1, writ
 
         y = autowah(data, maximum, minimum, peak = peak, Q = 0.8, p = p, delay = 0)
         y = np.asarray(y, dtype=np.float32)
-    if write :
-        wavfile.write(output, fs, y)
+        if write :
+            wavfile.write(output, fs, y)
     return y, fs

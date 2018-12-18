@@ -50,7 +50,7 @@ labelOut.grid(row = 1,column = 0)
 fileOut.grid(row = 1,column = 1)
 b.grid(row = 1,column = 2, padx = 10)
 
-
+mainloop()
 
 
 
